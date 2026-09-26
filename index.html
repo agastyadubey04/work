@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Happy 1st Anniversary My Love ❤️</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Great+Vibes&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body data-theme="dark">
+
+  <!-- Background Interactive Canvases -->
+  <canvas id="bg-canvas"></canvas>
+  <canvas id="fx-canvas"></canvas>
+  
+  <!-- Custom Heart Cursor Glow -->
+  <div class="cursor-glow" id="cursor-glow"></div>
+
+  <!-- Audio Elements -->
+  <audio id="audio-romantic" loop preload="auto"></audio>
+  <audio id="audio-birthday" loop preload="auto"></audio>
+
+  <!-- Autoplay Fallback Modal -->
+  <div class="autoplay-modal hidden" id="autoplay-modal">
+    <div class="glass-card modal-content text-center">
+      <div class="heart-pulse-icon">❤️</div>
+      <h2>A Surprise Awaits You</h2>
+      <p>Tap anywhere to begin your cinematic romantic experience...</p>
+      <button class="btn btn-primary" id="btn-start-experience">
+        <i class="fa-solid fa-play"></i> Tap to Begin
+      </button>
+    </div>
+  </div>
+
+  <!-- Floating Utility Navigation Bar -->
+  <nav class="floating-nav">
+    <button class="icon-btn" id="btn-theme-toggle" title="Toggle Theme">
+      <i class="fa-solid fa-moon"></i>
+    </button>
+    <button class="icon-btn" id="btn-particles-toggle" title="Toggle Effects">
+      <i class="fa-solid fa-wand-magic-sparkles"></i>
+    </button>
+    <button class="icon-btn" id="btn-fullscreen" title="Fullscreen">
+      <i class="fa-solid fa-expand"></i>
+    </button>
+  </nav>
+
+  <!-- Floating Music Controller -->
+  <div class="floating-music-player glass-card" id="music-player">
+    <div class="music-info">
+      <i class="fa-solid fa-music music-disc spinning" id="music-disc-icon"></i>
+      <div class="track-details">
+        <span class="track-title" id="track-title">Romantic Melody</span>
+        <span class="track-status" id="track-status">Playing</span>
+      </div>
+    </div>
+    <div class="music-controls">
+      <button class="music-btn" id="btn-play-pause"><i class="fa-solid fa-pause"></i></button>
+      <button class="music-btn" id="btn-switch-track" title="Switch Track"><i class="fa-solid fa-sliders"></i></button>
+      <div class="volume-container">
+        <i class="fa-solid fa-volume-high" id="volume-icon"></i>
+        <input type="range" id="volume-slider" min="0" max="1" step="0.01" value="0.8" />
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 1: LOADING SCREEN -->
+  <section class="screen-section loading-screen active" id="sec-loading">
+    <div class="loader-container text-center">
+      <div class="glowing-heart-ring">
+        <div class="heart-shape"></div>
+      </div>
+      <p class="loading-text" id="loading-text">Adarsh ki jayy😉 made something special just for you...</p>
+      <div class="progress-bar-container glass-card">
+        <div class="progress-bar" id="progress-bar"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAIN SCROLL CONTENT (Hidden during Loading) -->
+  <main class="main-content hidden" id="main-content">
+
+    <!-- SECTION 3: WELCOME PAGE -->
+    <section class="hero-section" id="sec-welcome">
+      <div class="hero-content text-center">
+        <span class="subtitle-badge">An Unforgettable Day</span>
+        <h1 class="main-title glow-text" id="welcome-title">Happy Anniversary ❤️</h1>
+        <h2 class="romantic-subtitle" id="welcome-subtitle">My Beautiful Princess</h2>
+        <p class="romantic-message glass-card" id="welcome-message">
+          Loading personalized message...
+        </p>
+        
+        
+        </div>
+
+        <button class="btn btn-primary btn-pulse" id="btn-open-surprise">
+          <i class="fa-solid fa-heart"></i> Open My Surprise
+        </button>
+      </div>
+    </section>
+
+    <!-- SECTION 5: CELEBRATION BANNER & CAKE -->
+    <section class="section-container text-center" id="sec-birthday-celebration">
+      <div class="glass-card celebration-card">
+        <h2 class="section-title">Blow Out Your Candles 🎂</h2>
+        <p class="section-subtitle">Make a wish before clicking the cake!</p>
+
+        <!-- Animated Cake Interactive -->
+        <div class="interactive-cake" id="interactive-cake">
+          <div class="cake-glow"></div>
+          <div class="candle">
+            <div class="flame" id="cake-flame"></div>
+          </div>
+          <div class="cake-tier tier-top"></div>
+          <div class="cake-tier tier-bottom"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 6: PHOTO GALLERY -->
+    <section class="section-container" id="sec-gallery">
+      <h2 class="section-title text-center">Our Cherished Moments ✨</h2>
+      <div class="gallery-wrapper">
+        <div class="gallery-slider" id="gallery-slider">
+          <!-- Dynamic Images Injected Here -->
+        </div>
+        <div class="gallery-controls">
+          <button class="gallery-btn" id="btn-gallery-prev"><i class="fa-solid fa-chevron-left"></i></button>
+          <button class="gallery-btn" id="btn-gallery-next"><i class="fa-solid fa-chevron-right"></i></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 7: LOVE LETTER -->
+    <section class="section-container" id="sec-letter">
+      <h2 class="section-title text-center">A Letter From My Heart 💌</h2>
+      <div class="envelope-wrapper text-center">
+        <div class="envelope" id="envelope">
+          <div class="front flap"></div>
+          <div class="front pocket"></div>
+          <div class="letter glass-card" id="letter-content">
+            <div class="typewriter-text" id="typewriter-text"></div>
+          </div>
+        </div>
+        <p class="tap-hint"><i class="fa-solid fa-hand-pointer"></i> Tap envelope to open</p>
+        <button class="btn btn-secondary hidden" id="btn-download-letter">
+          <i class="fa-solid fa-download"></i> Save Love Letter
+        </button>
+      </div>
+    </section>
+
+    <!-- SECTION 8: MEMORY TIMELINE -->
+    <section class="section-container" id="sec-timeline">
+      <h2 class="section-title text-center">Our Journey Together 🌹</h2>
+      <div class="timeline-container" id="timeline-container">
+        <!-- Dynamic Timeline Injected Here -->
+      </div>
+    </section>
+
+    <!-- SECTION 9: LOVE REASONS -->
+    <section class="section-container" id="sec-reasons">
+      <h2 class="section-title text-center">Reasons Why I Love You 💕</h2>
+      <div class="reasons-grid" id="reasons-grid">
+        <!-- Dynamic Cards Injected Here -->
+      </div>
+    </section>
+
+    <!-- SECTION 11: SPECIAL GIFT BOX -->
+    <section class="section-container text-center" id="sec-gift">
+      <h2 class="section-title">A Special Gift For You 🎁</h2>
+      <div class="gift-box-container">
+        <div class="gift-box" id="gift-box">
+          <div class="gift-lid"></div>
+          <div class="gift-body"></div>
+          <div class="gift-ribbon-v"></div>
+          <div class="gift-ribbon-h"></div>
+        </div>
+      </div>
+      <div class="gift-modal glass-card hidden" id="gift-modal">
+        <h3>Surprise! 🎉</h3>
+        <p id="gift-message">Loading gift message...</p>
+        <button class="btn btn-primary" id="btn-close-gift">Close</button>
+      </div>
+    </section>
+
+    <!-- SECTION 12: WISH WALL -->
+    <section class="section-container" id="sec-wishes">
+      <h2 class="section-title text-center"> Wishes Wall ✨</h2>
+      <div class="wishes-grid" id="wishes-grid">
+        <!-- Animated wish bubbles -->
+      </div>
+    </section>
+
+    <!-- SECTION 13: FINAL SCREEN -->
+    <section class="section-container final-screen text-center" id="sec-final">
+      <div class="glass-card final-card">
+        <h1 class="glowing-final-title">Happy 1st Anniversary My Love ❤️</h1>
+        <p class="forever-text" id="final-message">I'll Love You Forever ❤️</p>
+        
+        <div class="final-actions">
+          <button class="btn btn-primary" id="btn-replay"><i class="fa-solid fa-rotate-right"></i> Replay Surprise</button>
+          <button class="btn btn-secondary" id="btn-play-romantic"><i class="fa-solid fa-music"></i> Play Romantic Song</button>
+          <button class="btn btn-secondary" id="btn-play-birthday"><i class="fa-solid fa-cake-candles"></i> Play Birthday Song</button>
+          <button class="btn btn-secondary" id="btn-share"><i class="fa-solid fa-share-nodes"></i> Share Love</button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Lightbox for Image Gallery -->
+  <div class="lightbox hidden" id="lightbox">
+    <span class="lightbox-close" id="lightbox-close">&times;</span>
+    <img class="lightbox-img" id="lightbox-img" src="" alt="Expanded View" />
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
